@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Sridhi Pharmaceuticals Order Page</title>
   <style>
-    /* Styles remain unchanged */
     * {
       box-sizing: border-box;
       margin: 0;
@@ -27,18 +26,25 @@
       align-items: center;
       border-radius: 10px;
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      flex-wrap: wrap;
     }
 
     header h2 {
       color: white;
       font-size: 24px;
+      margin-bottom: 10px;
+    }
+
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
     }
 
     nav a {
       color: white;
       text-decoration: none;
       font-weight: bold;
-      margin: 0 10px;
     }
 
     nav a:hover {
@@ -147,13 +153,58 @@
       background-color: #1c86ee;
     }
 
+    /* Responsive tweaks */
     @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      nav {
+        justify-content: center;
+        width: 100%;
+        margin-top: 10px;
+      }
+
       .input-row {
         flex-direction: column;
       }
 
-      th, td {
-        font-size: 14px;
+      .input-row input {
+        width: 100%;
+      }
+
+      table, thead, tbody, th, td, tr {
+        display: block;
+      }
+
+      thead {
+        display: none;
+      }
+
+      tr {
+        margin-bottom: 15px;
+        border-bottom: 1px solid #ddd;
+        padding-bottom: 10px;
+      }
+
+      td {
+        text-align: left;
+        padding-left: 40%;
+        position: relative;
+      }
+
+      td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 10px;
+        top: 12px;
+        font-weight: bold;
+        color: #555;
+      }
+
+      .quantity {
+        justify-content: flex-start;
       }
     }
   </style>
@@ -169,15 +220,6 @@
     </nav>
   </header>
 
-  <!-- Admin ON/OFF Control -->
-  <div id="admin-toggle" style="margin-top: 20px; text-align: center;">
-    <button onclick="toggleWebsite()" style="padding: 10px 20px; font-size: 16px; cursor: pointer;">
-      Toggle Website Status
-    </button>
-    <p id="status-msg" style="margin-top: 10px; font-weight: bold;"></p>
-  </div>
-
-  <!-- Form Container Wrapper -->
   <div id="order-form-wrapper">
     <form action="https://sheetdb.io/api/v1/pgg1yy7fkom8a" method="post" id="sheetdb-form">
       <div class="container">
@@ -188,64 +230,56 @@
         </div>
 
         <table>
-          <thead>
-            <tr>
-              <th>S.NO</th>
-              <th>Product</th>
-              <th>Quantity</th>
-              <th>Amount (₹)</th>
-            </tr>
-          </thead>
           <tbody>
             <tr>
-              <td>1</td>
-              <td>Paracetamol</td>
-              <td class="quantity">
+              <td data-label="S.NO">1</td>
+              <td data-label="Product">Paracetamol</td>
+              <td data-label="Quantity" class="quantity">
                 <button type="button" onclick="changeQty(this, -1)">-</button>
                 <input type="number" name="data[paracetamol_qty]" value="1" min="0">
                 <button type="button" onclick="changeQty(this, 1)">+</button>
               </td>
-              <td>₹100</td>
+              <td data-label="Amount">₹100</td>
             </tr>
             <tr>
-              <td>2</td>
-              <td>Amoxicillin</td>
-              <td class="quantity">
+              <td data-label="S.NO">2</td>
+              <td data-label="Product">Amoxicillin</td>
+              <td data-label="Quantity" class="quantity">
                 <button type="button" onclick="changeQty(this, -1)">-</button>
                 <input type="number" name="data[amoxicillin_qty]" value="1" min="0">
                 <button type="button" onclick="changeQty(this, 1)">+</button>
               </td>
-              <td>₹120</td>
+              <td data-label="Amount">₹120</td>
             </tr>
             <tr>
-              <td>3</td>
-              <td>Ibuprofen</td>
-              <td class="quantity">
+              <td data-label="S.NO">3</td>
+              <td data-label="Product">Ibuprofen</td>
+              <td data-label="Quantity" class="quantity">
                 <button type="button" onclick="changeQty(this, -1)">-</button>
                 <input type="number" name="data[ibuprofen_qty]" value="1" min="0">
                 <button type="button" onclick="changeQty(this, 1)">+</button>
               </td>
-              <td>₹90</td>
+              <td data-label="Amount">₹90</td>
             </tr>
             <tr>
-              <td>4</td>
-              <td>Cetirizine</td>
-              <td class="quantity">
+              <td data-label="S.NO">4</td>
+              <td data-label="Product">Cetirizine</td>
+              <td data-label="Quantity" class="quantity">
                 <button type="button" onclick="changeQty(this, -1)">-</button>
                 <input type="number" name="data[cetirizine_qty]" value="1" min="0">
                 <button type="button" onclick="changeQty(this, 1)">+</button>
               </td>
-              <td>₹80</td>
+              <td data-label="Amount">₹80</td>
             </tr>
             <tr>
-              <td>5</td>
-              <td>Azithromycin</td>
-              <td class="quantity">
+              <td data-label="S.NO">5</td>
+              <td data-label="Product">Azithromycin</td>
+              <td data-label="Quantity" class="quantity">
                 <button type="button" onclick="changeQty(this, -1)">-</button>
                 <input type="number" name="data[azithromycin_qty]" value="1" min="0">
                 <button type="button" onclick="changeQty(this, 1)">+</button>
               </td>
-              <td>₹150</td>
+              <td data-label="Amount">₹150</td>
             </tr>
           </tbody>
         </table>
@@ -256,7 +290,6 @@
   </div>
 
   <script>
-    // Updated to allow 0 as the minimum
     function changeQty(button, change) {
       const input = button.parentElement.querySelector('input');
       let value = parseInt(input.value) || 0;
@@ -265,7 +298,6 @@
       input.value = value;
     }
 
-    // Submit form via SheetDB API
     document.getElementById('sheetdb-form').addEventListener('submit', function (e) {
       e.preventDefault();
       fetch(this.action, {
@@ -276,28 +308,6 @@
           window.open('page2.html', '_blank');
         });
     });
-
-    // Website open/close toggle
-    function updateSiteStatus() {
-      const isOpen = localStorage.getItem('siteStatus') === 'open';
-      document.getElementById('order-form-wrapper').style.display = isOpen ? 'block' : 'none';
-      document.getElementById('status-msg').textContent = isOpen
-        ? '🟢 Orders are open.'
-        : '🔴 Orders are currently closed.';
-    }
-
-    function toggleWebsite() {
-      const currentStatus = localStorage.getItem('siteStatus') === 'open' ? 'closed' : 'open';
-      localStorage.setItem('siteStatus', currentStatus);
-      updateSiteStatus();
-    }
-
-    window.onload = function () {
-      if (!localStorage.getItem('siteStatus')) {
-        localStorage.setItem('siteStatus', 'open');
-      }
-      updateSiteStatus();
-    };
   </script>
 
 </body>
