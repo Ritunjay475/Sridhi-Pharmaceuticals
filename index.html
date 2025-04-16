@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Sridhi Pharmaceuticals</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    :root {
+      --primary-color: #007BFF;
+      --secondary-color: #ffffff;
+      --text-color: #333;
+      --accent-color: #0056b3;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: var(--secondary-color);
+      color: var(--text-color);
+    }
+
+    header {
+      background-color: var(--primary-color);
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 22px;
+      color: var(--secondary-color);
+    }
+
+    nav a {
+      color: var(--secondary-color);
+      margin-left: 20px;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    .hero-section {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 50px;
+      background-color: #f5faff;
+      flex-wrap: wrap;
+    }
+
+    .hero-content {
+      max-width: 500px;
+    }
+
+    .hero-content h1 {
+      font-size: 36px;
+      color: #1e1e1e;
+      margin-bottom: 10px;
+    }
+
+    .trusted-text {
+      font-size: 18px;
+      color: #16C79A;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+
+    .search-box {
+      display: flex;
+      margin-bottom: 20px;
+    }
+
+    .search-box input {
+      padding: 10px 15px;
+      font-size: 16px;
+      border: 2px solid #ccc;
+      border-right: none;
+      border-radius: 8px 0 0 8px;
+      outline: none;
+      flex: 1;
+    }
+
+    .search-box button {
+      padding: 10px 15px;
+      background-color: #007BFF;
+      color: white;
+      border: 2px solid #007BFF;
+      border-radius: 0 8px 8px 0;
+      cursor: pointer;
+    }
+
+    .order-btn {
+      padding: 12px 25px;
+      background-color: #007BFF;
+      color: white;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .hero-image img {
+      width: 900px;
+      max-width: 100%;
+      border-radius: 10px;
+      height: 500px;
+    }
+
+    .locate-store {
+      text-align: center;
+      margin: 30px 0;
+    }
+
+    .locate-store button {
+      background-color: var(--primary-color);
+      color: var(--secondary-color);
+      padding: 12px 25px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 20px;
+      padding: 20px;
+    }
+
+    .product {
+      background-color: #f0f8ff;
+      padding: 15px;
+      border-radius: 20px;
+      text-align: center;
+      box-shadow: 0 4px 6px rgba(0, 123, 255, 0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .product:hover {
+      transform: translateY(-5px);
+    }
+
+    .product img {
+      width: 80px;
+      height: 80px;
+      object-fit: contain;
+      margin-bottom: 10px;
+    }
+
+    .product-name {
+      font-weight: bold;
+      margin-bottom: 8px;
+      color: var(--primary-color);
+    }
+
+    footer {
+      background-color: var(--primary-color);
+      color: var(--secondary-color);
+      text-align: center;
+      padding: 20px 10px;
+    }
+
+    .footer-links a {
+      color: var(--secondary-color);
+      margin: 0 10px;
+      text-decoration: none;
+    }
+
+    .footer-links a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      nav {
+        margin-top: 10px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .product img {
+        width: 60px;
+        height: 60px;
+      }
+
+      .hero-content h1 {
+        font-size: 28px;
+      }
+    }
+
+    /* Admin toggle button styles */
+    .admin-toggle {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 2000;
+      background: white;
+      padding: 10px 15px;
+      border: 2px solid #007BFF;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+      font-weight: bold;
+    }
+
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 44px;
+      height: 24px;
+    }
+
+    .switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      background-color: #ccc;
+      transition: .4s;
+      border-radius: 24px;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+    }
+
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 18px;
+      width: 18px;
+      left: 3px;
+      bottom: 3px;
+      background-color: white;
+      transition: .4s;
+      border-radius: 50%;
+    }
+
+    input:checked + .slider {
+      background-color: #007BFF;
+    }
+
+    input:checked + .slider:before {
+      transform: translateX(20px);
+    }
+
+    #siteOverlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: white;
+      z-index: 1500;
+      display: none;
+      justify-content: center;
+      align-items: center;
+    }
+
+    #siteOverlay .overlay-text {
+      font-size: 28px;
+      font-weight: bold;
+      color: #007BFF;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Sridhi Pharmaceuticals</h1>
+    <nav>
+      <a href="#">Home</a>
+      <a href="neworder.html">Give Order</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <div class="hero-section">
+    <div class="hero-content">
+      <h1>Get Trusted Medicines Here</h1>
+      <div class="search-box">
+        <input type="text" placeholder="Search for medicines..." />
+        <button><i class="fas fa-search"></i></button>
+      </div>
+      <button class="order-btn">Order Now</button>
+    </div>
+    <div class="hero-image">
+      <img src="https://media.istockphoto.com/id/1135284188/photo/if-you-need-its-here.jpg?s=612x612&w=0&k=20&c=2yfZHUqTEGW4-5r4Sc4pzWKx0DtubpdbTkX3h_w1AJg=" alt="Doctor">
+    </div>
+  </div>
+
+  <div class="locate-store">
+    <button>Locate Store</button>
+  </div>
+
+  <div class="products">
+    <div class="product"><img src="https://www.krishlarpharma.com/wp-content/uploads/2019/12/KRITFEN-P-2-tablet.jpg" alt=""><div class="product-name">Paracetamol</div><button class="order-btn">Order now</button></div>
+    <div class="product"><img src="https://www.krishlarpharma.com/wp-content/uploads/2019/12/KRITFEN-P-2-tablet.jpg" alt=""><div class="product-name">Ibuprofen</div><button class="order-btn">Order now</button></div>
+    <div class="product"><img src="https://www.krishlarpharma.com/wp-content/uploads/2019/12/KRITFEN-P-2-tablet.jpg" alt=""><div class="product-name">Amoxicillin</div><button class="order-btn">Order now</button></div>
+    <div class="product"><img src="https://www.krishlarpharma.com/wp-content/uploads/2019/12/KRITFEN-P-2-tablet.jpg" alt=""><div class="product-name">Cough Syrup</div><button class="order-btn">Order now</button></div>
+  </div>
+
+  <div class="products products-2-col">
+    <div class="product"><img src="https://atlas-content-cdn.pixelsquid.com/stock-images/syrup-bottle-box-medicine-9KaY1m8-600.jpg" alt=""><div class="product-name">Calcium Tablets</div><button class="order-btn">Order now</button></div>
+    <div class="product"><img src="https://atlas-content-cdn.pixelsquid.com/stock-images/syrup-bottle-box-medicine-9KaY1m8-600.jpg" alt=""><div class="product-name">Metformin</div><button class="order-btn">Order now</button></div>
+    <div class="product"><img src="https://atlas-content-cdn.pixelsquid.com/stock-images/syrup-bottle-box-medicine-9KaY1m8-600.jpg" alt=""><div class="product-name">Vitamin C</div><button class="order-btn">Order now</button></div>
+    <div class="product"><img src="https://atlas-content-cdn.pixelsquid.com/stock-images/syrup-bottle-box-medicine-9KaY1m8-600.jpg" alt=""><div class="product-name">Atorvastatin</div><button class="order-btn">Order now</button></div>
+  </div>
+  <div class="products products-2-col">
+    <div class="product"><img src="https://media.istockphoto.com/id/635948926/photo/3d-rendering-of-antibiotic-pills-in-blister-pack.jpg?s=612x612&w=0&k=20&c=5dSgDQojTp0hR6VfdPNm5VYmXHZNobOhf3XT17YKc3s=" alt=""><div class="product-name">Calcium Tablets</div><button class="order-btn">Order now</button></div>
+    <div class="product"><img src="https://media.istockphoto.com/id/635948926/photo/3d-rendering-of-antibiotic-pills-in-blister-pack.jpg?s=612x612&w=0&k=20&c=5dSgDQojTp0hR6VfdPNm5VYmXHZNobOhf3XT17YKc3s=" alt=""><div class="product-name">Metformin</div><button class="order-btn">Order now</button></div>
+    <div class="product"><img src="https://media.istockphoto.com/id/635948926/photo/3d-rendering-of-antibiotic-pills-in-blister-pack.jpg?s=612x612&w=0&k=20&c=5dSgDQojTp0hR6VfdPNm5VYmXHZNobOhf3XT17YKc3s=" alt=""><div class="product-name">Vitamin C</div><button class="order-btn">Order now</button></div>
+    <div class="product"><img src="https://media.istockphoto.com/id/635948926/photo/3d-rendering-of-antibiotic-pills-in-blister-pack.jpg?s=612x612&w=0&k=20&c=5dSgDQojTp0hR6VfdPNm5VYmXHZNobOhf3XT17YKc3s=" alt=""><div class="product-name">Atorvastatin</div><button class="order-btn">Order now</button></div>
+  </div>
+
+  <footer>
+    <div>
+      <h3>Sridhi Pharmaceuticals</h3>
+      <p>Your health, our priority. Trusted medicines delivered with care.</p>
+    </div>
+    <div class="footer-links">
+      <a href="#">Home</a>
+      <a href="neworder.html">Order</a>
+      <a href="contact.html">Contact</a>
+      <a href="#">Privacy Policy</a>
+    </div>
+    <div style="margin-top: 10px;">&copy; 2025 Sridhi Pharmaceuticals. All rights reserved.</div>
+  </footer>
+
+  <!-- Admin ON/OFF Toggle -->
+  <div class="admin-toggle">
+    <label class="switch">
+      <input type="checkbox" id="siteToggle">
+      <span class="slider round"></span>
+    </label>
+    <span id="toggleLabel">Site ON</span>
+  </div>
+
+  <!-- Overlay if OFF -->
+  <div id="siteOverlay">
+    <div class="overlay-text">Website is currently OFF</div>
+  </div>
+
+  <script>
+    const toggle = document.getElementById("siteToggle");
+    const overlay = document.getElementById("siteOverlay");
+    const label = document.getElementById("toggleLabel");
+
+    function updateSiteState(isOn) {
+      overlay.style.display = isOn ? "none" : "flex";
+      toggle.checked = isOn;
+      label.textContent = isOn ? "Site ON" : "Site OFF";
+      localStorage.setItem("siteOn", isOn);
+    }
+
+    toggle.addEventListener("change", () => {
+      updateSiteState(toggle.checked);
+    });
+
+    // Initialize
+    const savedState = localStorage.getItem("siteOn");
+    if (savedState !== null) {
+      updateSiteState(savedState === "true");
+    } else {
+      updateSiteState(true); // default is ON
+    }
+  </script>
+
+</body>
+</html>

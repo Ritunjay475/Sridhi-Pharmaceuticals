@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sridhi Pharmaceuticals Order Page</title>
+  <style>
+    /* Styles remain unchanged */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background-color: #f5faff;
+      color: #333;
+      padding: 20px;
+    }
+
+    header {
+      background-color: #1E90FF;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    header h2 {
+      color: white;
+      font-size: 24px;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      margin: 0 10px;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    .container {
+      margin-top: 30px;
+      background-color: white;
+      padding: 30px;
+      border-radius: 16px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+      max-width: 1200px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .input-row {
+      display: flex;
+      gap: 20px;
+      margin-bottom: 30px;
+      flex-wrap: wrap;
+    }
+
+    .input-row input {
+      flex: 1;
+      min-width: 200px;
+      padding: 12px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      background-color: #f0f8ff;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      border-radius: 10px;
+      overflow: hidden;
+      margin-top: 10px;
+    }
+
+    th, td {
+      padding: 12px;
+      text-align: center;
+      border: 1px solid #cce7ff;
+    }
+
+    th {
+      background-color: #1E90FF;
+      color: white;
+      font-size: 16px;
+    }
+
+    td {
+      background-color: #ffffff;
+    }
+
+    .quantity {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .quantity input {
+      width: 50px;
+      text-align: center;
+      padding: 6px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+
+    .quantity button {
+      background-color: #1E90FF;
+      color: white;
+      border: none;
+      padding: 6px 10px;
+      font-size: 16px;
+      font-weight: bold;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .quantity button:hover {
+      background-color: #1c86ee;
+    }
+
+    .submit-btn {
+      margin-top: 30px;
+      background-color: #1E90FF;
+      color: white;
+      font-size: 18px;
+      padding: 14px 30px;
+      border: none;
+      border-radius: 10px;
+      font-weight: bold;
+      cursor: pointer;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      transition: background-color 0.3s;
+    }
+
+    .submit-btn:hover {
+      background-color: #1c86ee;
+    }
+
+    @media (max-width: 768px) {
+      .input-row {
+        flex-direction: column;
+      }
+
+      th, td {
+        font-size: 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h2><u>Sridhi Pharmaceuticals</u></h2>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="#"><u>Give Order</u></a>
+      <a href="#">Contact</a>
+    </nav>
+  </header>
+
+  <!-- Admin ON/OFF Control -->
+  <div id="admin-toggle" style="margin-top: 20px; text-align: center;">
+    <button onclick="toggleWebsite()" style="padding: 10px 20px; font-size: 16px; cursor: pointer;">
+      Toggle Website Status
+    </button>
+    <p id="status-msg" style="margin-top: 10px; font-weight: bold;"></p>
+  </div>
+
+  <!-- Form Container Wrapper -->
+  <div id="order-form-wrapper">
+    <form action="https://sheetdb.io/api/v1/pgg1yy7fkom8a" method="post" id="sheetdb-form">
+      <div class="container">
+        <div class="input-row">
+          <input type="text" name="data[name]" placeholder="Name" required />
+          <input type="text" name="data[address]" placeholder="Address" required />
+          <input type="text" name="data[phone]" placeholder="Phone no" required />
+        </div>
+
+        <table>
+          <thead>
+            <tr>
+              <th>S.NO</th>
+              <th>Product</th>
+              <th>Quantity</th>
+              <th>Amount (₹)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>Paracetamol</td>
+              <td class="quantity">
+                <button type="button" onclick="changeQty(this, -1)">-</button>
+                <input type="number" name="data[paracetamol_qty]" value="1" min="0">
+                <button type="button" onclick="changeQty(this, 1)">+</button>
+              </td>
+              <td>₹100</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>Amoxicillin</td>
+              <td class="quantity">
+                <button type="button" onclick="changeQty(this, -1)">-</button>
+                <input type="number" name="data[amoxicillin_qty]" value="1" min="0">
+                <button type="button" onclick="changeQty(this, 1)">+</button>
+              </td>
+              <td>₹120</td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>Ibuprofen</td>
+              <td class="quantity">
+                <button type="button" onclick="changeQty(this, -1)">-</button>
+                <input type="number" name="data[ibuprofen_qty]" value="1" min="0">
+                <button type="button" onclick="changeQty(this, 1)">+</button>
+              </td>
+              <td>₹90</td>
+            </tr>
+            <tr>
+              <td>4</td>
+              <td>Cetirizine</td>
+              <td class="quantity">
+                <button type="button" onclick="changeQty(this, -1)">-</button>
+                <input type="number" name="data[cetirizine_qty]" value="1" min="0">
+                <button type="button" onclick="changeQty(this, 1)">+</button>
+              </td>
+              <td>₹80</td>
+            </tr>
+            <tr>
+              <td>5</td>
+              <td>Azithromycin</td>
+              <td class="quantity">
+                <button type="button" onclick="changeQty(this, -1)">-</button>
+                <input type="number" name="data[azithromycin_qty]" value="1" min="0">
+                <button type="button" onclick="changeQty(this, 1)">+</button>
+              </td>
+              <td>₹150</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <button type="submit" class="submit-btn">Place Order</button>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    // Updated to allow 0 as the minimum
+    function changeQty(button, change) {
+      const input = button.parentElement.querySelector('input');
+      let value = parseInt(input.value) || 0;
+      value += change;
+      if (value < 0) value = 0;
+      input.value = value;
+    }
+
+    // Submit form via SheetDB API
+    document.getElementById('sheetdb-form').addEventListener('submit', function (e) {
+      e.preventDefault();
+      fetch(this.action, {
+        method: 'POST',
+        body: new FormData(this)
+      }).then(response => response.json())
+        .then(data => {
+          window.open('page2.html', '_blank');
+        });
+    });
+
+    // Website open/close toggle
+    function updateSiteStatus() {
+      const isOpen = localStorage.getItem('siteStatus') === 'open';
+      document.getElementById('order-form-wrapper').style.display = isOpen ? 'block' : 'none';
+      document.getElementById('status-msg').textContent = isOpen
+        ? '🟢 Orders are open.'
+        : '🔴 Orders are currently closed.';
+    }
+
+    function toggleWebsite() {
+      const currentStatus = localStorage.getItem('siteStatus') === 'open' ? 'closed' : 'open';
+      localStorage.setItem('siteStatus', currentStatus);
+      updateSiteStatus();
+    }
+
+    window.onload = function () {
+      if (!localStorage.getItem('siteStatus')) {
+        localStorage.setItem('siteStatus', 'open');
+      }
+      updateSiteStatus();
+    };
+  </script>
+
+</body>
+</html>
