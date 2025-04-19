@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sridhi Pharmaceuticals</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #ccc;
+    }
+
+    header {
+      background-color: #007BFF;
+      padding: 15px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: white;
+      flex-wrap: wrap;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 20px;
+    }
+
+    nav {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: white;
+      font-weight: bold;
+    }
+
+    .container {
+      background-color: white;
+      margin: 40px auto;
+      padding: 80px;
+      max-width: 900px;
+      border-radius: 8px;
+      box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+      display: flex;
+      gap: 40px;
+      flex-wrap: wrap;
+      height: auto;
+    }
+
+    .product-info {
+      text-align: center;
+      flex: 1 1 250px;
+    }
+
+    .product-info img {
+      width: 100px;
+      margin-bottom: 15px;
+    }
+
+    .product-details {
+      background-color: #f1f1f1;
+      padding: 20px;
+      text-align: left;
+      border-radius: 5px;
+    }
+
+    .product-details h2 {
+      margin-top: 0;
+      text-decoration: underline;
+    }
+
+    .form {
+      flex: 1 1 250px;
+    }
+
+    .form input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    .qty-box {
+      display: flex;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+
+    .qty-box input {
+      width: 60px;
+      text-align: center;
+      margin: 0 10px;
+    }
+
+    .place-order-btn {
+      background-color: #007BFF;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    .amount {
+      font-size: 18px;
+      margin-bottom: 15px;
+    }
+
+    footer {
+      background-color: #007BFF;
+      color: white;
+      text-align: center;
+      padding: 40px 10px;
+      margin-top: 40px;
+    }
+
+    footer h3 {
+      margin: 0 0 10px;
+      font-size: 20px;
+    }
+
+    footer p {
+      margin: 0 0 10px;
+      font-size: 14px;
+    }
+
+    .footer-links {
+      margin: 10px 0;
+    }
+
+    .footer-links a {
+      color: white;
+      text-decoration: none;
+      margin: 0 10px;
+      font-size: 14px;
+    }
+
+    .footer-links a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+        padding: 20px;
+        gap: 20px;
+        height: auto;
+      }
+
+      header {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      nav {
+        justify-content: center;
+        gap: 10px;
+        margin-top: 10px;
+      }
+
+      .product-info img {
+        width: 80px;
+      }
+
+      .place-order-btn {
+        font-size: 14px;
+        padding: 10px;
+      }
+
+      .amount {
+        font-size: 16px;
+      }
+
+      .qty-box {
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .qty-box input {
+        width: 100%;
+        margin: 5px 0;
+      }
+    }
+
+    @media (max-width: 480px) {
+      header h1 {
+        font-size: 18px;
+      }
+
+      nav a {
+        font-size: 14px;
+      }
+
+      .container {
+        padding: 15px;
+        margin: 20px auto;
+        gap: 20px;
+        height: auto;
+      }
+
+      .form input {
+        padding: 8px;
+        font-size: 14px;
+      }
+
+      .place-order-btn {
+        font-size: 14px;
+        padding: 10px;
+      }
+
+      .product-details {
+        padding: 15px;
+        font-size: 14px;
+      }
+
+      .product-details h2 {
+        font-size: 18px;
+      }
+
+      .qty-box {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .qty-box label,
+      .qty-box input,
+      .qty-box span {
+        margin: 5px 0;
+        width: 100%;
+      }
+
+      footer h3 {
+        font-size: 18px;
+      }
+
+      footer p {
+        font-size: 13px;
+      }
+
+      .footer-links a {
+        font-size: 13px;
+        display: inline-block;
+        margin: 5px;
+      }
+
+      .amount {
+        font-size: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Sridhi Pharmaceuticals</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="neworder.html">Give order</a>
+      <a href="contact.html">Contacts</a>
+    </nav>
+  </header>
+
+  <div class="container">
+    <div class="product-info">
+      <img src="https://www.krishlarpharma.com/wp-content/uploads/2019/12/KRITFEN-P-2-tablet.jpg" alt="Paracetamol Tablet" />
+      <div class="product-details">
+        <h2>Paracetamol Tablet</h2>
+        <ul>
+          <li>Return policy<br /><strong>NOT RETURNABLE</strong></li>
+          <li>Composition<br /><span>Paracetamol</span></li>
+          <li>Expiry<br /><strong>01-06-2025</strong></li>
+        </ul>
+      </div>
+    </div>
+
+    <form onsubmit="return validateForm()" class="form">
+      <input type="text" id="name" placeholder="Name" required />
+      <input type="text" id="phone" placeholder="Phone" required />
+      <input type="text" id="address" placeholder="Address" required />
+
+      <div class="qty-box">
+        <label for="qty">Qty</label>
+        <input type="number" id="qty" value="1" min="1" required />
+        <span>Strip</span>
+      </div>
+
+      <div class="amount">Amount to pay<br /><strong>₹100</strong></div>
+
+      <a href="page2.html" id="orderLink" style="display: none;"></a>
+      <button type="submit" class="place-order-btn">Place Order</button>
+    </form>
+  </div>
+
+  <footer>
+    <h3>Sridhi Pharmaceuticals</h3>
+    <p>Your health, our priority. Trusted medicines delivered with care.</p>
+    <div class="footer-links">
+      <a href="index.html">Home</a>
+      <a href="neworder.html">Give Order</a>
+      <a href="contact.html">Contact</a>
+      <a href="#">Privacy Policy</a>
+    </div>
+    <div style="margin-top: 10px;">&copy; 2025 Sridhi Pharmaceuticals. All rights reserved.</div>
+  </footer>
+
+  <script>
+    function validateForm() {
+      const name = document.getElementById("name").value.trim();
+      const phone = document.getElementById("phone").value.trim();
+      const address = document.getElementById("address").value.trim();
+      const qty = document.getElementById("qty").value;
+
+      if (!name || !phone || !address || qty < 1) {
+        alert("Please fill out all fields correctly.");
+        return false;
+      }
+
+      document.getElementById("orderLink").click();
+      return false;
+    }
+  </script>
+</body>
+</html>
